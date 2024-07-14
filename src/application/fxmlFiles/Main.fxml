@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import jfxtras.labs.scene.layout.OptimizableContentPane?>
+<?import jfxtras.scene.control.CalendarPicker?>
+<?import jfxtras.scene.control.agenda.Agenda?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Контакти">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openAddContactPopUp" text="Добави" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEditContactPopUp" text="Редактирай" />
+                  <MenuItem mnemonicParsing="false" onAction="#openDeleteContactPopUp" text="Изтрии" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#exitFromProgram" text="Изход" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Срещи">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openAddMeetingPopUp" text="Добави" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEditMeetingPopUp" text="Редактирай" />
+                  <MenuItem mnemonicParsing="false" onAction="#openDeleteMeetingPopUp" text="Изтрии" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Категории">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openAddCategoryPopUp" text="Добави" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEditCategoryPopUp" text="Редактирай" />
+                  <MenuItem mnemonicParsing="false" onAction="#openDeleteCategoryPopUp" text="Изтрии" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="version 0.04" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <right>
+      <VBox prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="25.0" />
+               </VBox.margin>
+            </Separator>
+            <TextArea maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="200.0" promptText="Резултати от търсенето" />
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Agenda fx:id="agenda" />
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox>
+               <children>
+                  <VBox>
+                     <children>
+                        <Separator prefWidth="200.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <CalendarPicker fx:id="calendarBox" />
+               </children>
+            </VBox>
+            <OptimizableContentPane prefHeight="500.0" />
+            <VBox alignment="CENTER" prefHeight="25.0">
+               <children>
+                  <Separator prefWidth="200.0" />
+                  <Label text="Търси среща">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="50.0">
+               <children>
+                  <Label text="Начална дата" />
+                  <DatePicker fx:id="startDate" prefWidth="200.0">
+                     <tooltip>
+                        <Tooltip text="Полето задава начална дата , от която ще започне търсенето на срещата. &#10;Ако не зададете нищо в това поле, програмата ще изкара всички съществуващи &#10;срещи отговарящи на останалите зададени изисквания." />
+                     </tooltip></DatePicker>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="50.0">
+               <children>
+                  <Label text="Крайна дата" />
+                  <DatePicker fx:id="endDate" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето задава датата, до която желаете да търсите&#10;съществъващи срещи. Ако не въведете нищо в полето &#10;програмата автоматично ще изкара всички съществъващи &#10;срещи отговарящи на останалите изисквания, които&#10;сте задали." />
+                     </tooltip>
+                  </DatePicker>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="50.0">
+               <children>
+                  <Label text="Категория" />
+                  <ComboBox fx:id="categoryList" prefWidth="200.0" promptText="Изберете категория">
+                     <tooltip>
+                        <Tooltip text="Полето задава категория, по която да търсите &#10;съществъващи срещи. Ако не зададете категоря &#10;програмата ще избере всички срещи, които отговарят &#10;на останали изисквания и нямат зададена категория." />
+                     </tooltip></ComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="50.0">
+               <children>
+                  <Label text="Име" />
+                  <TextField fx:id="firstName" alignment="CENTER" promptText="Първо име на контакта">
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето задава първото име на контакта или &#10;контактите, които участват в срещата. Може &#10;да въведете само част от името, тогава програмата &#10;ще изведе всички срещи, които отговарят на останалите &#10;изисквания и съдържат контакт, който има в първото си &#10;име част от думата, която сте задали. Ако не зададете &#10;нищо в полето, програмата ще игнорира първите &#10;имена на контактите (всяко ще отговаря на изискванията) &#10;и ще изведе всички срещи отговарящи на останалите &#10;изисквания." />
+                     </tooltip>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="50.0">
+               <children>
+                  <Label text="Фамилия" />
+                  <TextField fx:id="lastName" alignment="CENTER" promptText="Фамилия на контакта">
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето задава фамилията на контакта или &#10;контактите, които участват в срещата. Може &#10;да въведете само част от фамилията, тогава програмата &#10;ще изведе всички срещи, които отговарят на останалите &#10;изисквания и съдържат контакт, който има във фамилното&#10;име част от думата, която сте задали. Ако не зададете &#10;нищо в полето, програмата ще игнорира фамилните &#10;имена на контактите (всяко ще отговаря на изискванията) &#10;и ще изведе всички срещи отговарящи на останалите &#10;изисквания." />
+                     </tooltip>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clearAllFieldsFromSearchBox" prefWidth="80.0" text="Изчисти">
+                     <tooltip>
+                        <Tooltip text="Премахва всичи зададени критерии." />
+                     </tooltip></Button>
+                  <Button mnemonicParsing="false" onAction="#searchForMeetingInDatabase" prefWidth="80.0" text="Търси">
+                     <tooltip>
+                        <Tooltip text="Ще изведе прозорец с всички открити срещи." />
+                     </tooltip></Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

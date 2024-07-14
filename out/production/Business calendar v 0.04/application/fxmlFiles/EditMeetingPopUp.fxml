@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.EditMeetingPopUpController">
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#loadInformationForMeeting" prefWidth="160.0" text="Зареди информация">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#editMeeting" prefWidth="80.0" text="Редактирай">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#editDataMeetingInFileAndExitFromPopUp" prefWidth="80.0" text="Запази" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label prefWidth="70.0" text="Дата" />
+                  <DatePicker fx:id="dateAndTimeInformation" prefWidth="220.0" promptText="Дата" showWeekNumbers="true">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето е задължително" />
+                     </tooltip>
+                  </DatePicker>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label prefWidth="70.0" text="Час" />
+                  <ComboBox fx:id="hoursInformation" prefWidth="70.0" promptText="23">
+                     <HBox.margin>
+                        <Insets left="20.0" right="5.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето е задължително" />
+                     </tooltip>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </ComboBox>
+                  <Label text="часa">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="minutesInformation" prefWidth="70.0" promptText="59">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето е задължително" />
+                     </tooltip>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </ComboBox>
+                  <Label text="мин.">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0">
+               <children>
+                  <Label prefWidth="70.0" text="Място" />
+                  <TextField fx:id="placeInformation" prefWidth="220.0" promptText="Място на срещата">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="253.0">
+               <children>
+                  <Label prefWidth="70.0" text="Категория" />
+                  <ComboBox fx:id="categoryInformation" prefWidth="220.0" promptText="Изберете категория">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="150.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clearSelectedCategory" prefWidth="160.0" text="Премахни категория" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="240.0">
+               <children>
+                  <Label prefWidth="70.0" text="Участници" />
+                  <ComboBox fx:id="contactsInformation" onAction="#addContactToAllContactsTextArea" prefWidth="220.0" promptText="Изберете участници">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето е задължително" />
+                     </tooltip>
+                  </ComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <children>
+                  <Pane prefHeight="100.0" prefWidth="70.0" />
+                  <TextArea fx:id="allSelectedContactsTextArea" editable="false" prefHeight="100.0" prefWidth="220.0" promptText="Участници в срещата">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextArea>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="150.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clearAllSelectedContacts" prefWidth="160.0" text="Премахни участниците" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="293.0">
+               <children>
+                  <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="70.0" text="Коментар" />
+                  <TextArea fx:id="commentInformation" prefHeight="100.0" prefWidth="220.0" promptText="Въведете коментар">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Полето е задължително" />
+                     </tooltip>
+                  </TextArea>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <top>
+      <Label alignment="CENTER" prefWidth="600.0" text="Моля изберете среща за редактиране">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="360.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <right>
+      <TableView fx:id="meetingTable" editable="true" minWidth="600.0">
+        <columns>
+            <TableColumn fx:id="dateAntTimeColumn" prefWidth="75.0" text="Дата и час">
+               <cellValueFactory>
+                  <PropertyValueFactory property="data" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="placeColumn" prefWidth="75.0" text="Място">
+               <cellValueFactory>
+                  <PropertyValueFactory property="place" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Категория">
+               <cellValueFactory>
+                  <PropertyValueFactory property="category" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="contactsColumn" prefWidth="75.0" text="Участници">
+               <cellValueFactory>
+                  <PropertyValueFactory property="contacts" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="commentsColumn" prefWidth="114.0" text="Коментар">
+               <cellValueFactory>
+                  <PropertyValueFactory property="comments" />
+               </cellValueFactory>
+            </TableColumn>
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </TableView>
+   </right>
+</BorderPane>
